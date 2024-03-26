@@ -2,7 +2,7 @@ namespace gregslist_csharp_2.Services;
 
 public class HousesService
 {
-    private readonly HousesRepository _repository
+    private readonly HousesRepository _repository;
 
     public HousesService(HousesRepository repository)
     {
@@ -11,7 +11,7 @@ public class HousesService
 
     internal List<House> GetHouses()
     {
-        List<Houses> houses = _repository.GetHouses();
+        List<House> houses = _repository.GetHouses();
         return houses;
     }
 

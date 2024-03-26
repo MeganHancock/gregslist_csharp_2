@@ -5,9 +5,9 @@ namespace gregslist_csharp_2.Controllers;
 public class HousesController : ControllerBase
 {
 
-    private readonly HousesService _housesService
+    private readonly HousesService _housesService;
 
-public HousesController(HousesService _housesService)
+    public HousesController(HousesService housesService)
     {
         _housesService = housesService;
     }
@@ -17,12 +17,12 @@ public HousesController(HousesService _housesService)
     {
         try
         {
-            List<House> houses = _housesService.GetHouses()
-            return Ok(houses)
+            List<House> houses = _housesService.GetHouses();
+            return Ok(houses);
         }
         catch (Exception exception)
         {
-            return BadRequest(exception.Message)
+            return BadRequest(exception.Message);
         }
     }
 

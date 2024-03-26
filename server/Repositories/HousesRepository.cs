@@ -3,7 +3,7 @@ namespace gregslist_csharp_2.Repositories;
 public class HousesRepository
 {
     private readonly IDbConnection _db;
-    public CarsRepository(IDbConnection db)
+    public HousesRepository(IDbConnection db)
     {
         _db = db;
     }
