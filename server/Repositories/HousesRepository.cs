@@ -1,0 +1,19 @@
+namespace gregslist_csharp_2.Repositories;
+
+public class HousesRepository
+{
+    private readonly IDbConnection _db;
+    public CarsRepository(IDbConnection db)
+    {
+        _db = db;
+    }
+
+    internal List<House> GetHouses()
+    {
+        string sql = "SELECT * FROM houses;";
+
+        List<House> houses = _db.Query<House>(sql).ToList();
+        return houses;
+    }
+
+}
