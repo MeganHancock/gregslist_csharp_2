@@ -11,5 +11,6 @@ public class House
     public int Price { get; set; }
     public bool OwnedOutright { get; set; }
     public string CreatorId { get; set; }
+    public string description { get; set; }
 }
 
