@@ -26,4 +26,17 @@ public class HousesService
         return house;
     }
 
+    internal string DestroyHouse(int houseId, string userId)
+    {
+        House houseToDestroy = GetHouseById(houseId);
+
+        if (houseToDestroy.CreatorId != userId)
+        {
+            throw new Exception("Not Your Car");
+        }
+
+        _repository.DestroyCar(houseId);
+
+        return $"{houseToDestroy.Title} has been destroyed";
+    }
 }

@@ -6,10 +6,12 @@ public class HousesController : ControllerBase
 {
 
     private readonly HousesService _housesService;
+    private readonly Auth0Provider _auth0Provider;
 
-    public HousesController(HousesService housesService)
+    public HousesController(HousesService housesService, Auth0Provider auth0Provider)
     {
         _housesService = housesService;
+        _auth0Provider = auth0Provider;
     }
 
     [HttpGet]
@@ -27,7 +29,6 @@ public class HousesController : ControllerBase
     }
 
     [HttpGet("{houseId}")]
-
     public ActionResult<House> GetHouseById(int houseId)
     {
         try
@@ -41,4 +42,19 @@ public class HousesController : ControllerBase
         }
     }
 
+
+    [HttpDelete("{houseId}")]
+    [Authorize]
+    public async Task<ActionResult<string>> DestroyHouse(int houseId)
+    {
+        try
+        {
+            Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+            string message = _housesService.DestroyHouse(houseId, userInfo.Id);
+        }
+        catch (Exception exception)
+        {
+            return BadRequest(exception.Message);
+        }
+    }
 }

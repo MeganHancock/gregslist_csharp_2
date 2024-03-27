@@ -1,3 +1,4 @@
+
 namespace gregslist_csharp_2.Repositories;
 
 public class HousesRepository
@@ -27,4 +28,12 @@ public class HousesRepository
         return house;
     }
 
+    internal void DestroyCar(int houseId)
+    {
+        string sql = "DELETE FROM houses WHERE id = @houseId";
+
+        _db.Execute(sql, new { houseId });
+
+
+    }
 }
